@@ -1,13 +1,10 @@
 /**
 
+==================
  Overlay-Z v0.2.1
-------------------
+==================
 
-Produces an overlay which disables click actions on anything within the page,
-supposing all page element z-indexes are below 9999.
-
-Ability to customize the display of both the overlay as well as the content
-area by passing an object of key/value pairs representing CSS styles.
+A very simple, yet customizable jQuery overlay.
 
  License
 ---------
@@ -78,35 +75,53 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 	$.overlayz._new = function(options) {
 		var $overlayz = $('<div class="overlayz"></div>')
-			.css($.overlayz._css.container) // Apply the default CSS.
-			.appendTo(document.body) // Append the overlay to <body>.
-			.hide() // The overlay should be hidden by default.
-			.append(
-				$('<div class="overlayz-cell"></div>')
-					.css($.overlayz._css.cell)
-					.append(
-						$('<div class="overlayz-body"></div>')
-							.css($.overlayz._css.body)
-					)
-			)
-		;
+				.css($.overlayz._css.main) // Apply default CSS.
+				.hide() // Hide overlay by default.
+				.appendTo(document.body) // Add overlay to DOM <body>.
+				.append(
+					$('<div class="overlayz-container"></div>')
+						.css($.overlayz._css.container)
+						.append(
+							$('<div class="overlayz-cell"></div>')
+								.css($.overlayz._css.cell)
+								.append(
+									$('<div class="overlayz-body"></div>')
+										.css($.overlayz._css.body)
+								)
+						)
+		);
 
 		$overlayz.overlayz = {
 			'css': function(css) {
-				console.log(css, $overlayz.children('.overlayz-body'));
-				if('container' in css) {
+				if('main' in css) {
 					$overlayz.css(css.container);
 				}
+				if('container' in css) {
+					$overlayz
+						.children('.overlayz-container')
+						.css(css.container);
+				}
 				if('cell' in css) {
-					$overlayz.children('.overlayz-cell').css(css.cell);
+					$overlayz
+						.children('.overlayz-container')
+						.children('.overlayz-cell')
+						.css(css.cell);
 				}
 				if('body' in css) {
-					$overlayz.children('.overlayz-cell').children('.overlayz-body').css(css.body);
+					$overlayz
+						.children('.overlayz-container')
+						.children('.overlayz-cell')
+						.children('.overlayz-body')
+						.css(css.body);
 				}
 				return $overlayz;
 			},
 			'html': html = function(body) {
-				$overlayz.children('.overlayz-cell').children('.overlayz-body').html(body);
+				$overlayz
+					.children('.overlayz-container')
+					.children('.overlayz-cell')
+					.children('.overlayz-body')
+					.html(body);
 				return $overlayz;
 			},
 			'close': function(animation, speed, callback) {
@@ -158,20 +173,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 	// Defines the default formatting of the overlays.
 	$.overlayz._css = {
-		'container': {
+		'main': { // Outermost element required to be block element for
+		          // animations to work properly.
+			'display':          'block',
 			'position':         'fixed',
+			'top':              '0',
+			'left':             '0',
+			'width':            '100%',
+			'height':           '100%',
+			'max-height':       '100%',
+		},
+		'container': {
 			'display':          'table',
 			'top':              '0',
 			'left':             '0',
 			'width':            '100%',
 			'height':           '100%',
-			'min-height':       '100%',
 			'max-height':       '100%',
 			'background-color': 'rgba(0, 0, 0, 0.6)',
 			'padding':          '0',
 			'margin':           '0'
 		},
-		'cell': {
+		'cell': { // Provides vertical alignment.
 			'display':        'table-cell',
 			'vertical-align': 'middle'
 		},
