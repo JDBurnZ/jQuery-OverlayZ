@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://raw.github.com/JDBurnZ/jquery-overlay-z/master/jquery-overlay-z-0.2.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				// Define an alias for our overlay, so we can grab it later.
+				var alias = 'my-overlay';
+
+				// Bind to click events on the "Click Me" button.
+				$(document.body).on('click', '#display-overlay', function(event) {
+					// Create the overlay, setting its alias so we can grab it again later.
+					var $overlay = $.overlayz({
+						'html': 'Overlay with custom styling<br /><button id="close-overlay">Close Overlay</button>',
+						'alias': alias,
+						'css': {
+							'container': {
+								'background': 'none'
+							},
+							'body': {
+								'width': '200px',
+								'height': '200px',
+								'background-color': '#000',
+								'border': '40px solid #0f0',
+								'border-radius': '40px',
+								'padding': '40px',
+								'color': '#0f0'
+							}
+						}
+					});
+
+					// Show the overlay, using a fadeIn animation.
+					$overlay.fadeIn('fast');
+				});
+
+				// Bind to click events on the "Close Overlay" button.
+				$(document.body).on('click', '#close-overlay', function(event) {
+					// Grab our overlay by the alias we used when creating it.
+					var $overlay = $.overlayz(alias);
+					
+					// Close the overlay using a fadeOut animation.
+					$.overlayz(alias).overlayz.close('fadeOut', 'fast');
+				});
+			});
+		</script>
+		<style type="text/css">
+			html, body {
+				width:100%;
+				height:100%;
+				margin:0;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="display-overlay">Click Me</button>
+	</body>
+</html>
