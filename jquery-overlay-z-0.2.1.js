@@ -169,8 +169,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			'width':            '25%',
 			'height':           '250px',
 			'margin':           'auto',
+			'padding':          '12px',
 			'border':           '1px solid #ccc',
-			'background-color': 'rgba(255, 255, 255, 1)'
+			'background-color': 'rgba(255, 255, 255, 1)',
+			'text-align':       'left'
 		}
 	}
 })(jQuery);
