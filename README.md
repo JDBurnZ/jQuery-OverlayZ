@@ -45,6 +45,9 @@ layz.fadeIn();
 // Hide the overlay.
 layz.overlayz.close();
 
+// Hide the overlay using a custom animation.
+layz.overlayz.close();
+
 // Remove (delete) the overlay.
 layz.overlayz.remove();
 
