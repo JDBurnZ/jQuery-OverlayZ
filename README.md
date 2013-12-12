@@ -11,4 +11,4 @@ Please refer to the LICENSE file for licensing and copyright information.
 
 Examples
 --------
-Examples are available within the <a href="https://github.com/JDBurnZ/jquery-overlay-z/examples">examples</a> directory.
+Examples are available within the <a href="examples">examples</a> directory.
