@@ -68,6 +68,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		},
 		'add': function(alias, $overlay) {
 			$.overlayz._alias.overlays[alias] = $overlay;
+		},
+		'remove': function(alias) {
+			if(alias in this.overlays) {
+				delete this.overlays[alias];
+			}
 		}
 	};
 
@@ -121,6 +126,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					}
 				}
 				return $overlayz;
+			},
+			'remove': function() {
+				if(this.alias != undefined) {
+					$.overlayz._alias.remove(this.alias);
+				}
+				$overlayz.remove();
 			}
 		};
 
@@ -138,6 +149,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		// If the overlay has an alias specified, add it to our lookup
 		// table.
 		if('alias' in options) {
+			$overlayz.overlayz.alias = options.alias;
 			$.overlayz._alias.add(options.alias, $overlayz);
 		}
 
@@ -161,11 +173,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		},
 		'cell': {
 			'display':        'table-cell',
-			'vertical-align': 'middle',
-			'text-align':     'center'
+			'vertical-align': 'middle'
 		},
 		'body': {
-			'display':          'inline-block',
+			'display':          'block',
 			'width':            '25%',
 			'height':           '250px',
 			'margin':           'auto',
