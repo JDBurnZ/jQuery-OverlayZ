@@ -92,6 +92,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		);
 
 		$overlayz.overlayz = {
+			'body': (
+				$overlayz
+					.children('.overlayz-container')
+					.children('.overlayz-cell')
+					.children('.overlayz-body')
+			),
 			'css': function(css) {
 				if('main' in css) {
 					$overlayz.css(css.container);
