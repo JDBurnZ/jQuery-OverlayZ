@@ -88,8 +88,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									$('<div class="overlayz-body"></div>')
 										.css($.overlayz._css.body)
 								)
+								.append(
+									$('<div class="overlayz-close">&times;</div>')
+										.css($.overlayz._css.close)
+								)
 						)
-		);
+				);
 
 		$overlayz.overlayz = {
 			'body': (
@@ -112,6 +116,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 						.children('.overlayz-container')
 						.children('.overlayz-cell')
 						.css(css.cell);
+				}
+				if('close' in css) {
+					$overlayz
+						.children('.overlayz-container')
+						.children('.overlayz-cell')
+						.children('.overlayz-close')
+						.css(css.close)
 				}
 				if('body' in css) {
 					$overlayz
@@ -160,7 +171,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		if('css' in options) {
 			$overlayz.overlayz.css(options.css);
 		}
-		
+
 		// If HTML parameters have been specified, apply them to the
 		// overlay.
 		if('html' in options) {
@@ -173,6 +184,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			$overlayz.overlayz.alias = options.alias;
 			$.overlayz._alias.add(options.alias, $overlayz);
 		}
+
+		// When the escape key is pressed, close the overlay if it is displayed.
+		$(document.body).on('keydown.overlayz-close', function(event) {
+			if(event.keyCode == 27 && $overlayz.is(':visible')) {
+				$overlayz.overlayz.close('fadeOut', 'fast');
+			}
+		});
+
+		// When the user clicks outside of the overlay body and onto the faded out
+		// background, automatically close hte overlay.
+		$overlayz.on('click.overlayz-close-faded', '.overlayz-cell', function(event) {
+			if($overlayz.is(':visible') && $(event.target).hasClass('overlayz-cell')) {
+				$overlayz.overlayz.close('fadeOut', 'fast');
+			}
+		});
+
+		// When the "Close" icon is pressed on the overlay, close it.
+		$overlayz.on('click.overlayz-close-icon', '.overlayz-close', function(event) {
+			if($overlayz.is(':visible')) {
+				$overlayz.overlayz.close('fadeOut', 'fast');
+			}
+		});
 
 		return $overlayz;
 	}
@@ -203,6 +236,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		'cell': { // Provides vertical alignment.
 			'display':        'table-cell',
 			'vertical-align': 'middle'
+		},
+		'close': {
+			'border': '1px solid #a00000',
+			'border-radius': '3px',
+			'background-color': 'rgb(204, 0, 0)',
+			'color': '#fff',
+			'cursor': 'pointer',
+			'font-size': '29px',
+			'font-weight': 'bold',
+			'height': '29px',
+			'line-height': '29px',
+			'position': 'absolute',
+			'right': '8px',
+			'text-align': 'center',
+			'top': '8px',
+			'width': '28px',
 		},
 		'body': {
 			'display':          'block',
