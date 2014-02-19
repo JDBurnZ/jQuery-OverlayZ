@@ -104,7 +104,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			),
 			'css': function(css) {
 				if('main' in css) {
-					$overlayz.css(css.container);
+					$overlayz.css(css.main);
 				}
 				if('container' in css) {
 					$overlayz
