@@ -1,5 +1,5 @@
-jquery-overlay-z
-================
+jQuery OverlayZ
+===============
 
 A very simple, yet customizable jQuery overlay.
 
