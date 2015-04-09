@@ -7,13 +7,11 @@ License
 -------
 Please refer to the LICENSE file for licensing and copyright information.
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/JDBurnZ/jquery-overlay-z/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
 Examples
 --------
 More examples are available within the <a href="examples">examples</a> directory.
 
-How "easy" is Overlay-Z to use?
+How "easy" is OverlayZ to use?
 <pre>
 // Instantiate a standard overlay.
 var layz = $.overlayz({
