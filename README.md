@@ -1,7 +1,7 @@
 jQuery OverlayZ
 ===============
 
-A very simple, yet customizable jQuery overlay.
+OverlayZ is an easy to use and customizable jQuery plug-in designed to make implementation of overlays with custom content and styles easy to manage and use.
 
 License
 -------
