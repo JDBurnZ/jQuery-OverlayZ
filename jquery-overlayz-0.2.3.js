@@ -1,7 +1,7 @@
 /**
 
 ==================
- Overlay-Z v0.2.2
+ OverlayZ v0.2.3
 ==================
 
 A very simple, yet customizable jQuery overlay.
