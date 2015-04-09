@@ -11,9 +11,7 @@ A very simple, yet customizable jQuery overlay.
 
 The MIT License (MIT)
 
-Copyright © 2013 Joshua D. Burns (JDBurnZ) and Message In Action LLC
-- JDBurnZ: https://github.com/JDBurnZ
-- Message In Action: https://www.messageinaction.com
+Copyright © 2013-2015 Joshua D. Burns <https://github.com/JDBurnZ>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
