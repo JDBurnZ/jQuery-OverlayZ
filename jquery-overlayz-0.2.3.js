@@ -142,7 +142,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			'close': function(animation, speed, callback) {
 				if(animation == false) {
 					$overlayz.hide();
+					$overlayz.remove();
 				} else {
+					if(callback === undefined) {
+						callback = function() {
+							$overlayz.remove();
+						};
+					}
 					if(speed == undefined) {
 						speed = 'fast';
 					}
